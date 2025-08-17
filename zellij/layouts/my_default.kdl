@@ -1,0 +1,22 @@
+layout{
+	pane split_direction="horizontal"{
+		pane split_direction="vertical" size="80%"{
+			pane size="70%"{
+				command "nvim"
+				focus true
+			}
+			pane split_direction="horizontal"{
+				pane size="35%"{
+					command "lazygit"
+				}
+				pane{
+					command "gemini"
+				}
+			}
+		}
+		pane split_direction="horizontal"{
+			pane{
+			}
+		}
+	}
+}
