@@ -127,10 +127,10 @@ export ZELLIJ_CONFIG_DIR="$HOME/dotfiles/zellij"
 eval "$(zellij setup --generate-auto-start zsh)"
 
 # Created by `pipx` on 2025-06-30 04:17:47
-export PATH="$PATH:/home/legit/.local/bin"
+export PATH="$PATH:$HOME/.local/bin"
 
 # pnpm
-export PNPM_HOME="/home/legit/.local/share/pnpm"
+export PNPM_HOME="$HOME/.local/share/pnpm"
 case ":$PATH:" in
   *":$PNPM_HOME:"*) ;;
   *) export PATH="$PNPM_HOME:$PATH" ;;
@@ -141,3 +141,7 @@ export PATH="$PATH:$HOME/apps/"
 
 # GZ sim version
 export GZ_VERSION=harmonic
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion

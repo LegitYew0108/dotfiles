@@ -10,7 +10,7 @@ vim.keymap.set("n","<A-7>",":LualineBuffersJump 7<CR>")
 vim.keymap.set("n","<A-8>",":LualineBuffersJump 8<CR>")
 vim.keymap.set("n","<A-9>",":LualineBuffersJump 9<CR>")
 
-vim.keymap.set("n","ff",":Yazi <CR>")
+vim.keymap.set("n","ff",":Fern . -drawer<CR>")
 
 vim.keymap.set('n', '<leader>ff', "<cmd>Telescope find_files<CR>")
 vim.keymap.set('n', '<leader>fg', "<cmd>Telescope live_grep<CR>")
