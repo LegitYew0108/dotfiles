@@ -145,3 +145,6 @@ export PATH="$HOME/Android/Sdk/platform-tools:$PATH"
 export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init --path)"
+
+# Created by `pipx` on 2025-06-30 04:18:32
+export PATH="$PATH:/home/legit/.local/bin"
