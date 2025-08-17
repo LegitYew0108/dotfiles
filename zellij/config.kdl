@@ -296,7 +296,7 @@ layout_dir "/home/legit/dotfiles/zellij/layouts"
 
 // The name of the default layout to load on startup
 // Default: "default"
-default_layout "my_default"
+default_layout "default"
  
 // The folder in which Zellij will look for themes
 // (Requires restart)
