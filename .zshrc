@@ -122,10 +122,6 @@ source $ZSH/oh-my-zsh.sh
 export PATH="$PATH:/opt/nvim-linux-x86_64/bin"
 export EDITOR="nvim"
 
-# Setting up Zellij config file
-export ZELLIJ_CONFIG_DIR="$HOME/dotfiles/zellij"
-eval "$(zellij setup --generate-auto-start zsh)"
-
 # Created by `pipx` on 2025-06-30 04:17:47
 export PATH="$PATH:$HOME/.local/bin"
 
@@ -139,9 +135,15 @@ esac
 #
 export PATH="$PATH:$HOME/apps/"
 
+. "$HOME/.cargo/env"
+
 # GZ sim version
 export GZ_VERSION=harmonic
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+# Setting up Zellij config file
+export ZELLIJ_CONFIG_DIR="$HOME/dotfiles/zellij"
+eval "$(zellij setup --generate-auto-start zsh)"
