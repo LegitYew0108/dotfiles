@@ -147,3 +147,6 @@ export NVM_DIR="$HOME/.nvm"
 # Setting up Zellij config file
 export ZELLIJ_CONFIG_DIR="$HOME/dotfiles/zellij"
 eval "$(zellij setup --generate-auto-start zsh)"
+
+source /opt/ros/jazzy/setup.zsh
+export RMW_IMPLEMENTATION=rmw_zenoh_cpp

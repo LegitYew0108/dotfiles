@@ -1,3 +1,8 @@
+vim.opt.ambiwidth = "single"
+vim.opt.winblend = 20		-- windowの透過率
+vim.opt.pumblend = 20		-- pop up menuの透過率
+vim.opt.termguicolors = true	-- terminalのgui設定
+vim.opt.swapfile = false
 vim.opt.number = true  --行数表示
 vim.opt.clipboard = 'unnamedplus'  --クリップボード共有
 vim.o.expandtab = false

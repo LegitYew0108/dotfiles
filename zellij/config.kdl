@@ -292,7 +292,7 @@ default_shell "zsh"
 // The folder in which Zellij will look for layouts
 // (Requires restart)
 // 
-layout_dir "/home/leginote/dotfiles/zellij/layouts"
+layout_dir "/home/legit/dotfiles/zellij/layouts"
 
 // The name of the default layout to load on startup
 // Default: "default"

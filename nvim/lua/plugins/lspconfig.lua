@@ -1,7 +1,10 @@
 return {
 		{
-			"cordx56/rustowl",
-			dependencies = {"neovim/nvim-lspconfig"},
+			'cordx56/rustowl',
+			version = '*', -- Latest stable version
+			build = 'cargo binstall rustowl',
+			lazy = false, -- This plugin is already lazy
+			opts = {},
 		},
     -- LSPの設定
     {'neovim/nvim-lspconfig'},
@@ -71,7 +74,7 @@ return {
 
     -- null-ls の設定 (フォーマッティングやLinting用)
     {
-        "jose-elias-alvarez/null-ls.nvim",
+        "nvimtools/none-ls.nvim",
         config = function()
             local null_ls = require("null-ls")
             null_ls.setup({
