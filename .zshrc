@@ -79,7 +79,6 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
 	git
-	vi-mode
 	zsh-autosuggestions
 	fast-syntax-highlighting
 )
@@ -116,7 +115,7 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+[[ ! -f ~/dotfiles/.p10k.zsh ]] || source ~/dotfiles/.p10k.zsh
 
 # Setting up neovim
 export PATH="$PATH:/opt/nvim-linux-x86_64/bin"
@@ -138,7 +137,7 @@ export PATH="$PATH:$HOME/apps/"
 . "$HOME/.cargo/env"
 
 # GZ sim version
-export GZ_VERSION=harmonic
+export GZ_VERSION=fortless
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
@@ -148,5 +147,5 @@ export NVM_DIR="$HOME/.nvm"
 export ZELLIJ_CONFIG_DIR="$HOME/dotfiles/zellij"
 eval "$(zellij setup --generate-auto-start zsh)"
 
-source /opt/ros/jazzy/setup.zsh
+source /opt/ros/humble/setup.zsh
 export RMW_IMPLEMENTATION=rmw_zenoh_cpp
