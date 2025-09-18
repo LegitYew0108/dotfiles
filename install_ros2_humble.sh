@@ -23,3 +23,6 @@ sudo apt install ros-humble-desktop
 sudo apt install ros-dev-tools
 
 sudo apt install ros-humble-rmw-zenoh-cpp
+curl -LO https://get.foxglove.dev/desktop/latest/foxglove-studio-latest-linux-amd64.deb
+sudo apt install foxglove-studio-latest-linux-amd64.deb
+rm -rf foxglove-studio-latest-linux-amd64.deb
