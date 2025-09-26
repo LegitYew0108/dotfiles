@@ -42,36 +42,6 @@ return {
         end,
     },
 
-    -- Rust Tools の設定
-    {
-        "simrat39/rust-tools.nvim",
-        config = function()
-            local rt = require("rust-tools")
-            rt.setup({
-                server = {
-                    on_attach = function(_, bufnr)
-                        -- 自動インポートのキーバインド設定
-                        vim.api.nvim_buf_set_keymap(bufnr, "n", "<Leader>ca", "<cmd>lua vim.lsp.buf.code_action()<CR>", { noremap = true, silent = true })
-                    end,
-                    settings = {
-                        ["rust-analyzer"] = {
-                            checkOnSave = {
-                                command = "clippy" -- 保存時にClippyでチェック
-                            },
-                            assist = {
-                                importGranularity = "module", -- モジュール単位でのインポート補助
-                                importPrefix = "by_self",     -- `self`を使ったインポートの補助
-                            },
-                            cargo = {
-                                allFeatures = true, -- Cargoの全てのフィーチャーを有効化
-                            },
-                        }
-                    }
-                },
-            })
-        end,
-    },
-
     -- null-ls の設定 (フォーマッティングやLinting用)
     {
         "nvimtools/none-ls.nvim",

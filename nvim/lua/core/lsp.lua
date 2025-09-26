@@ -1,8 +1,21 @@
-local nvim_lsp = require('lspconfig')
-
 local format_group = vim.api.nvim_create_augroup('FormatOnSave', { clear = true })
 
-nvim_lsp.clangd.setup({
+vim.lsp.enable('rust_analyzer')
+vim.lsp.enable('lua_ls')
+vim.lsp.enable('pyright')
+
+vim.lsp.config('rust_analyzer', {
+    settings = {
+        ["rust-analyzer"] = {
+            checkOnSave = {
+                command = "clippy"
+            },
+        }
+    }
+})
+
+
+vim.lsp.config('clangd',{
 	on_attach = function(client, bufnr)
 		-- clangdがformatter機能を持つか確認
 		if client.supports_method('textDocument/formatting') then
@@ -18,21 +31,26 @@ nvim_lsp.clangd.setup({
 		end
 	end,
 })
-nvim_lsp.rust_analyzer.setup({})
-nvim_lsp.ts_ls.setup({
+
+vim.lsp.config('ts_ls',{
 	cmd = { "typescript-language-server", "--stdio" },
 	filetypes = { "javascript","javascriptreact", "javascript.jsx", "typescript", "typescriptreact", "typescript.tsx" },
-	root_dir = nvim_lsp.util.root_pattern("package.json", ".git"),
+	root_markers = {"package.json", ".git"},
 })
-nvim_lsp.html.setup{
+
+vim.lsp.config('html',{
 	cmd = { "vscode-html-language-server", "--stdio" },
 	filetypes = { "html" },
-	root_dir = nvim_lsp.util.root_pattern("package.json", ".git"),
-}
-nvim_lsp.cssls.setup{
+	root_markers = {"package.json", ".git"},
+})
+
+vim.lsp.config('cssls',{
 	cmd = { "vscode-css-language-server", "--stdio" },
 	filetypes = { "css" },
-	root_dir = nvim_lsp.util.root_pattern("package.json", ".git"),
-}
-nvim_lsp.lua_ls.setup({})
-nvim_lsp.pyright.setup({})
+	root_markers = {"package.json", ".git"},
+})
+
+vim.diagnostic.config({
+  virtual_text = true,
+})
+

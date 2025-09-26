@@ -125,7 +125,7 @@ export EDITOR="nvim"
 export PATH="$PATH:$HOME/.local/bin"
 
 # pnpm
-export PNPM_HOME="$HOME/.local/share/pnpm"
+export PNPM_HOME="/home/legit/.local/share/pnpm"
 case ":$PATH:" in
   *":$PNPM_HOME:"*) ;;
   *) export PATH="$PNPM_HOME:$PATH" ;;
@@ -149,3 +149,7 @@ eval "$(zellij setup --generate-auto-start zsh)"
 
 source /opt/ros/humble/setup.zsh
 export RMW_IMPLEMENTATION=rmw_zenoh_cpp
+
+export GTK_IM_MODULE=fcitx
+export QT_IM_MODULE=fcitx
+export XMODIFIERS=@im=fcitx
