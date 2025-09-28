@@ -21,7 +21,7 @@ ln -s ${HOME}/dotfiles/nvim ${HOME}/.config/nvim
 sudo mkdir -p /usr/local/share/fonts/
 cd /usr/local/share/fonts/
 sudo curl -LO -# https://github.com/ryanoasis/nerd-fonts/releases/download/v3.4.0/0xProto.zip
-sudo unzip 0xProto.zip -n
+sudo unzip 0xProto.zip
 sudo rm -rf 0xProto.zip LICENSE README.md
 fc-cache -f -v
 cd ${HOME}
