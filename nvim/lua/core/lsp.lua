@@ -3,6 +3,10 @@ local format_group = vim.api.nvim_create_augroup('FormatOnSave', { clear = true 
 vim.lsp.enable('rust_analyzer')
 vim.lsp.enable('lua_ls')
 vim.lsp.enable('pyright')
+vim.lsp.enable('clangd')
+vim.lsp.enable('ts_ls')
+vim.lsp.enable('html')
+vim.lsp.enable('cssls')
 
 vim.lsp.config('rust_analyzer', {
     settings = {
@@ -16,6 +20,10 @@ vim.lsp.config('rust_analyzer', {
 
 
 vim.lsp.config('clangd',{
+	cmd = {'clangd', '--background-index', '--clang-tidy', '--log=verbose'},
+	init_options = { fallbackFlags = {'-std=c++17'},},
+	root_markers = { ".clangd", ".clang-tidy", ".clang-format", "compile_commands.json", "compile_flags.txt", "configure.ac", ".git" },
+	filetypes = { "c", "cpp", "objc", "objcpp", "cuda" },
 	on_attach = function(client, bufnr)
 		-- clangdがformatter機能を持つか確認
 		if client.supports_method('textDocument/formatting') then

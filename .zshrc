@@ -149,6 +149,7 @@ eval "$(zellij setup --generate-auto-start zsh)"
 
 source /opt/ros/humble/setup.zsh
 export RMW_IMPLEMENTATION=rmw_zenoh_cpp
+export XDG_CONFIG_HOME="$HOME/.config"
 
 export GTK_IM_MODULE=fcitx
 export QT_IM_MODULE=fcitx
