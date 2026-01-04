@@ -32,5 +32,4 @@ require("lazy").setup("plugins", {
 
 -- lspの設定後に追加
 vim.opt.completeopt = "menu,menuone,noselect"
-vim.cmd([[colorscheme tokyonight]])
 require("core/lsp")

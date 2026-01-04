@@ -6,23 +6,24 @@ return{
 	config = function()
 		local lualine = require('lualine')
 		local colors = {
-			blue   = '#7dcfff',
-			cyan   = '#7aa2f7',
-			black  = '#414868',
-			white  = '#c0caf5',
-			red    = '#f7768e',
-			violet = '#bb9af7',
-			green   = '#9ece6a',
+			blue   = '#6cb6eb',
+			cyan   = '#5dbbc1',
+			yellow = '#deb974',
+			black  = '#202023',
+			white  = '#c5cdd9',
+			red    = '#ec7279',
+			violet = '#ac83ba',
+			green   = '#a0c980',
 		}
 		local bubbles_theme = {
 			normal = {
-				a = { fg = colors.black, bg = colors.violet },
-				b = { fg = colors.black, bg = colors.green },
+				a = { fg = colors.black, bg = colors.green },
+				b = { fg = colors.black, bg = colors.violet },
 				c = { fg = colors.white },
 			},
 
 			insert = { a = { fg = colors.black, bg = colors.blue } },
-			visual = { a = { fg = colors.black, bg = colors.cyan } },
+			visual = { a = { fg = colors.black, bg = colors.yellow } },
 			replace = { a = { fg = colors.black, bg = colors.red } },
 
 			inactive = {

@@ -1,5 +1,9 @@
 local format_group = vim.api.nvim_create_augroup('FormatOnSave', { clear = true })
 
+vim.diagnostic.config({
+  virtual_text = true,
+})
+
 vim.lsp.enable('rust_analyzer')
 vim.lsp.enable('lua_ls')
 vim.lsp.enable('pyright')
@@ -42,6 +46,26 @@ vim.lsp.config('clangd',{
 	end,
 })
 
+vim.lsp.config('lua_ls',{
+ settings = {
+    Lua = {
+      runtime = {
+        version = "LuaJIT",
+        pathStrict = true,
+        path = { "?.lua", "?/init.lua" },
+      },
+      workspace = {
+        library = vim.list_extend(vim.api.nvim_get_runtime_file("lua", true), {
+          "${3rd}/luv/library",
+          "${3rd}/busted/library",
+          "${3rd}/luassert/library",
+        }),
+        checkThirdParty = "Disable",
+      },
+    },
+  },
+})
+
 vim.lsp.config('ts_ls',{
 	cmd = { "typescript-language-server", "--stdio" },
 	filetypes = { "javascript","javascriptreact", "javascript.jsx", "typescript", "typescriptreact", "typescript.tsx" },
@@ -58,10 +82,6 @@ vim.lsp.config('cssls',{
 	cmd = { "vscode-css-language-server", "--stdio" },
 	filetypes = { "css" },
 	root_markers = {"package.json", ".git"},
-})
-
-vim.diagnostic.config({
-  virtual_text = true,
 })
 
 vim.lsp.config("tinymist", {

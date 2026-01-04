@@ -17,3 +17,4 @@ vim.api.nvim_create_user_command("OpenPdf", function()
     vim.system({ "open", pdf_path })
   end
 end, {})
+

@@ -151,6 +151,7 @@ export ZELLIJ_CONFIG_DIR="$HOME/dotfiles/zellij"
 source /opt/ros/humble/setup.zsh
 export RMW_IMPLEMENTATION=rmw_zenoh_cpp
 export XDG_CONFIG_HOME="$HOME/.config"
+export WEZTERM_CONFIG_HOME="$HOME/dotfiles/wezterm"
 
 export GTK_IM_MODULE=fcitx
 export QT_IM_MODULE=fcitx
@@ -165,3 +166,5 @@ eval "$(pyenv init --path)"
 
 fpath+=~/.zfunc; autoload -Uz compinit; compinit
 export ZENOH_ROUTER_CONFIG_URI="$HOME/zenoh/MY_ZENOH_ROUTER_CONFIG.json5"
+
+source "$HOME/dotfiles/local_settings.zsh"

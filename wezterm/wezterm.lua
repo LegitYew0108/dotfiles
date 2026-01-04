@@ -5,8 +5,8 @@ local wezterm = require 'wezterm'
 local config = wezterm.config_builder()
 
 config.automatically_reload_config = true
-config.font = wezterm.font("0xProto Nerd Font Mono")
-config.font_size = 12.0
+config.font = wezterm.font("Hack Nerd Font")
+config.font_size = 16.0
 
 config.use_ime = true
 
@@ -18,6 +18,7 @@ config.window_frame = {
 config.color_scheme = 'tokyonight'
 config.show_new_tab_button_in_tab_bar = true
 config.colors = {
+	background = "2B2D3A",
 	tab_bar = {
 		inactive_tab_edge = 'none',
 	}
@@ -32,12 +33,12 @@ local SOLID_PIXEL_RIGHT = wezterm.nerdfonts.ple_pixelated_squares_big
 local SOLID_PIXEL_LEFT = wezterm.nerdfonts.ple_pixelated_squares_big_mirrored
 
 wezterm.on("format-tab-title", function(tab, tabs, panes, config, hover, max_width)
-   local background = "#faecfd"
+   local background = "#828a98"
    local foreground = "#112d55"
 	 local edge_background = "none"
 
    if tab.is_active then
-     background = "#c898cc"
+     background = "#a0c980"
      foreground = "#112d55"
    end
 
