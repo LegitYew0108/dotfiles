@@ -7,6 +7,7 @@ vim.lsp.enable('clangd')
 vim.lsp.enable('ts_ls')
 vim.lsp.enable('html')
 vim.lsp.enable('cssls')
+vim.lsp.enable('tinymist')
 
 vim.lsp.config('rust_analyzer', {
     settings = {
@@ -62,3 +63,10 @@ vim.diagnostic.config({
   virtual_text = true,
 })
 
+vim.lsp.config("tinymist", {
+	settings = {
+		formatterMode = "typstyle",
+		exportPdf = "onType",
+		semanticTokens = "disable",
+	}
+})

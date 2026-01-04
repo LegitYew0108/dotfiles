@@ -119,7 +119,9 @@ source $ZSH/oh-my-zsh.sh
 
 # Setting up neovim
 export PATH="$PATH:/opt/nvim-linux-x86_64/bin"
-export EDITOR="nvim"
+export EDITOR="/opt/nvim-linux-x86_64/bin/nvim"
+
+export PATH="$PATH:/opt/blender/"
 
 # Created by `pipx` on 2025-06-30 04:17:47
 export PATH="$PATH:$HOME/.local/bin"
@@ -145,7 +147,6 @@ export NVM_DIR="$HOME/.nvm"
 
 # Setting up Zellij config file
 export ZELLIJ_CONFIG_DIR="$HOME/dotfiles/zellij"
-eval "$(zellij setup --generate-auto-start zsh)"
 
 source /opt/ros/humble/setup.zsh
 export RMW_IMPLEMENTATION=rmw_zenoh_cpp
@@ -154,3 +155,13 @@ export XDG_CONFIG_HOME="$HOME/.config"
 export GTK_IM_MODULE=fcitx
 export QT_IM_MODULE=fcitx
 export XMODIFIERS=@im=fcitx
+
+export PATH="/usr/local/cuda/bin:$PATH"
+export LD_LIBRARY_PATH="/usr/local/cuda/lib64:$LD_LIBRARY_PATH"
+
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init --path)"
+
+fpath+=~/.zfunc; autoload -Uz compinit; compinit
+export ZENOH_ROUTER_CONFIG_URI="$HOME/zenoh/MY_ZENOH_ROUTER_CONFIG.json5"

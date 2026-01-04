@@ -19,6 +19,8 @@ vim.keymap.set('n', '<leader>fh', "<cmd>Telescope builtin.help_tags<CR>")
 
 vim.keymap.set('n', 'tt', "<cmd>ToggleTerm<CR>")
 
+vim.keymap.set("n", "<leader>p", ":OpenPdf<CR>", { desc = "Open Typst compiled PDF" })
+
 -- LSPサーバアタッチ時の処理
 vim.api.nvim_create_autocmd("LspAttach", {
   callback = function(ctx)
