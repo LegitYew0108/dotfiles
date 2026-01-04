@@ -8,6 +8,7 @@ vim.lsp.enable('ts_ls')
 vim.lsp.enable('html')
 vim.lsp.enable('cssls')
 vim.lsp.enable('tinymist')
+vim.lsp.enable('cmake')
 
 vim.lsp.config('rust_analyzer', {
     settings = {
