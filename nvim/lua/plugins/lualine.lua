@@ -5,37 +5,10 @@ return{
 	},
 	config = function()
 		local lualine = require('lualine')
-		local colors = {
-			blue   = '#6cb6eb',
-			cyan   = '#5dbbc1',
-			yellow = '#deb974',
-			black  = '#202023',
-			white  = '#c5cdd9',
-			red    = '#ec7279',
-			violet = '#ac83ba',
-			green   = '#a0c980',
-		}
-		local bubbles_theme = {
-			normal = {
-				a = { fg = colors.black, bg = colors.green },
-				b = { fg = colors.black, bg = colors.violet },
-				c = { fg = colors.white },
-			},
-
-			insert = { a = { fg = colors.black, bg = colors.blue } },
-			visual = { a = { fg = colors.black, bg = colors.yellow } },
-			replace = { a = { fg = colors.black, bg = colors.red } },
-
-			inactive = {
-				a = { fg = colors.white, bg = colors.black },
-				b = { fg = colors.white, bg = colors.black },
-				c = { fg = colors.white },
-			},
-		}
 		local config = {
 		options = {
 				icons_enabled = true,
-				theme = bubbles_theme,
+				theme = "auto",
 				component_separators = '',
 				section_separators = { left = '', right = '' },
 				disabled_filetypes = {
