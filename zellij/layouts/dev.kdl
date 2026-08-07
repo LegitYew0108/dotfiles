@@ -20,7 +20,6 @@ layout{
 			plugin location="zellij:compact-bar"
 		}
 		pane{
-			command "gemini"
 		}
 		pane size=2 borderless=true{
 			plugin location="zellij:status-bar"
@@ -39,6 +38,17 @@ layout{
 				pane size="50%"{}
 				pane{}
 			}
+		}
+		pane size=2 borderless=true{
+			plugin location="zellij:status-bar"
+		}
+	}
+	tab{
+		pane size=1 borderless=true{
+			plugin location="zellij:compact-bar"
+		}
+		pane{
+			command "claude"
 		}
 		pane size=2 borderless=true{
 			plugin location="zellij:status-bar"
