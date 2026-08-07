@@ -5,24 +5,17 @@ local wezterm = require 'wezterm'
 local config = wezterm.config_builder()
 
 config.automatically_reload_config = true
-config.font = wezterm.font("Hack Nerd Font")
-config.font_size = 16.0
-
 config.use_ime = true
+config.font = wezterm.font("0xProto Nerd Font")
+config.font_size = 16.0
 
 config.window_decorations = 'RESIZE'
 config.window_frame = {
  inactive_titlebar_bg = "none",
  active_titlebar_bg = "none",
 }
-config.color_scheme = 'tokyonight'
+config.color_scheme = 'nightfox'
 config.show_new_tab_button_in_tab_bar = true
-config.colors = {
-	background = "2B2D3A",
-	tab_bar = {
-		inactive_tab_edge = 'none',
-	}
-}
 
 local SOLID_LEFT_ARROW = wezterm.nerdfonts.ple_lower_right_triangle
 local SOLID_RIGHT_ARROW = wezterm.nerdfonts.ple_upper_left_triangle
@@ -32,14 +25,15 @@ local SOLID_LEFT_ICE_WAVEFORM = wezterm.nerdfonts.ple_ice_waveform_mirrored
 local SOLID_PIXEL_RIGHT = wezterm.nerdfonts.ple_pixelated_squares_big
 local SOLID_PIXEL_LEFT = wezterm.nerdfonts.ple_pixelated_squares_big_mirrored
 
-wezterm.on("format-tab-title", function(tab, tabs, panes, config, hover, max_width)
-   local background = "#828a98"
-   local foreground = "#112d55"
+wezterm.on("format-tab-title", function(tab, tabs, panes, config_internal, hover, max_width)
+	 local scheme = wezterm.color.get_builtin_schemes()[config.color_scheme]
+   local background = scheme.ansi[1]
+   local foreground = scheme.foreground
 	 local edge_background = "none"
 
    if tab.is_active then
-     background = "#a0c980"
-     foreground = "#112d55"
+     background = scheme.ansi[5]
+     foreground = scheme.foreground
    end
 
 	 local edge_foreground = background
@@ -59,7 +53,10 @@ wezterm.on("format-tab-title", function(tab, tabs, panes, config, hover, max_wid
    }
  end)
 
--- This is where you actually apply your config choises.
+wezterm.on('update-status', function(window, pane)
+  window:set_right_status(wezterm.format {
+    { Text = wezterm.strftime '%Y-%m-%d %H:%M ' },
+  })
+end)
 
--- and finally, return the configuration to wezterm
 return config
