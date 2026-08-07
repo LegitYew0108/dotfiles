@@ -44,14 +44,36 @@ return {
 
     -- null-ls の設定 (フォーマッティングやLinting用)
     {
-        "nvimtools/none-ls.nvim",
-        config = function()
-            local null_ls = require("null-ls")
-            null_ls.setup({
-                sources = {
-                    null_ls.builtins.formatting.rustfmt, -- Rustのフォーマッター
-                },
-            })
-        end,
+			"nvimtools/none-ls.nvim",
+			config = function()
+				local format_group = vim.api.nvim_create_augroup('FormatOnSave', { clear = true })
+				local null_ls = require("null-ls")
+				null_ls.setup({
+					sources = {
+							-- 1. Formatter: Prettier
+							-- prettierd を使うと、デーモンとして常駐するため動作が爆速になります
+							null_ls.builtins.formatting.prettierd,
+
+							-- 2. Linter: ESLint
+							-- eslint_d も同様に高速版。診断（エラー表示）用
+							null_ls.builtins.diagnostics.eslint_d,
+							-- 3. Code Action: ESLint
+							-- クイックフィックス（自動修正）を可能にする
+							null_ls.builtins.code_actions.eslint_d,
+					},
+						-- 保存時に自動整形を走らせる設定
+					on_attach = function(client, bufnr)
+						if client.supports_method("textDocument/formatting") then
+							vim.api.nvim_create_autocmd("BufWritePre", {
+								group = format_group,
+								buffer = bufnr,
+								callback = function()
+										vim.lsp.buf.format({ bufnr = bufnr, async = false })
+								end,
+							})
+						end
+					end,
+				})
+			end
     }
 }
