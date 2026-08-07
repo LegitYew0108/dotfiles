@@ -30,6 +30,7 @@ require("lazy").setup("plugins", {
   },
 })
 
+vim.cmd.colorscheme("nightfox")
 -- lspの設定後に追加
 vim.opt.completeopt = "menu,menuone,noselect"
 require("core/lsp")
