@@ -15,13 +15,30 @@ vim.lsp.enable('tinymist')
 vim.lsp.enable('cmake')
 
 vim.lsp.config('rust_analyzer', {
-    settings = {
-        ["rust-analyzer"] = {
-            checkOnSave = {
-                command = "clippy"
-            },
-        }
-    }
+	settings = {
+		["rust-analyzer"] = {
+			diagnostics = {
+				enable = false
+			},
+			check = {
+				command = "clippy"
+			},
+		}
+	},
+	on_attach = function(client, bufnr)
+		-- clangdがformatter機能を持つか確認
+		if client.supports_method('textDocument/formatting') then
+			-- BufWritePreイベント(ファイル保存直前に)
+			-- このバッファ(bufnr)に対してフォーマットを実行するautocmdを設定
+			vim.api.nvim_create_autocmd('BufWritePre',{
+				group = format_group,
+				buffer = bufnr,
+				callback = function()
+					vim.lsp.buf.format({bufnr = bufnr, async = false})
+				end,
+			})
+		end
+	end,
 })
 
 
@@ -70,6 +87,9 @@ vim.lsp.config('ts_ls',{
 	cmd = { "typescript-language-server", "--stdio" },
 	filetypes = { "javascript","javascriptreact", "javascript.jsx", "typescript", "typescriptreact", "typescript.tsx" },
 	root_markers = {"package.json", ".git"},
+	on_attach = function(client, bufnr)
+		client.server_capabilities.documentFormattingProvider = false
+	end
 })
 
 vim.lsp.config('html',{
