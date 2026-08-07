@@ -168,3 +168,12 @@ fpath+=~/.zfunc; autoload -Uz compinit; compinit
 export ZENOH_ROUTER_CONFIG_URI="$HOME/zenoh/MY_ZENOH_ROUTER_CONFIG.json5"
 
 source "$HOME/dotfiles/local_settings.zsh"
+
+# opencode
+export PATH=/home/legit/.opencode/bin:$PATH
+
+# Added by LM Studio CLI (lms)
+export PATH="$PATH:/home/legit/.lmstudio/bin"
+# End of LM Studio CLI section
+
+export PATH="$PATH:/usr/local/bin/zen/"
