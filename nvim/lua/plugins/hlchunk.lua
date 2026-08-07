@@ -11,7 +11,7 @@ return {
 					"#ec7279"
 				},
 				notify = true,
-				delay = 150,
+				delay = 0,
 			},
 			indent = {
 				enable = true,
