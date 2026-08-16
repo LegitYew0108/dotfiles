@@ -16,4 +16,4 @@ type = "archive-file"
 url = {{ gitHubLatestReleaseAssetURL "jesseduffield/lazygit" $asset | quote }}
 path = "lazygit"
 executable = true
-{{- end }}d/v${LAZYGIT_VERSION}/lazygit_${LAZYGIT_VERSION}_Linux_x86_64.tar.gz"
+{{- end }}
