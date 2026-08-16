@@ -5,3 +5,15 @@ url = "https://github.com/ryanoasis/nerd-fonts/releases/download/v{{ $.nerdFonts
 include = ["*.ttf", "*.otf"]
 targetPath = ".local/share/fonts"
 {{ end }}
+
+{{- if eq .chezmoi.os "linux" }}
+{{- $release := gitHubLatestRelease "jesseduffield/lazygit" }}
+{{- $version := trimPrefix "v" ($release.TagName | toString) }}
+{{- $asset := printf "lazygit_%s_linux_x86_64.tar.gz" $version }}
+
+[".local/bin/lazygit"]
+type = "archive-file"
+url = {{ gitHubLatestReleaseAssetURL "jesseduffield/lazygit" $asset | quote }}
+path = "lazygit"
+executable = true
+{{- end }}d/v${LAZYGIT_VERSION}/lazygit_${LAZYGIT_VERSION}_Linux_x86_64.tar.gz"

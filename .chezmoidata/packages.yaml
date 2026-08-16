@@ -17,3 +17,6 @@ packages:
     - zsh
   cargo:
     - zellij
+  snap:
+    - slack
+    - discord

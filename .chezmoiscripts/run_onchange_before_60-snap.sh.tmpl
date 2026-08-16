@@ -1,0 +1,13 @@
+{{- if eq .chezmoi.os "linux" -}}
+#!/bin/bash
+set -euo pipefail
+
+packages=(
+{{- range .packages.snap }}
+  {{ . | quote }}
+{{- end }}
+)
+
+sudo snap install -y "${packages[@]}"
+
+{{- end -}}
