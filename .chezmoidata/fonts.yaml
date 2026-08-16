@@ -1,0 +1,5 @@
+nerdFonts:
+  version: "3.4.0"
+  fonts:
+    - 0xProto
+    - Hack

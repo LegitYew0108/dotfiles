@@ -1,0 +1,9 @@
+{{ if eq .chezmoi.os "linux" -}}
+#!/bin/bash
+
+set -euo pipefail
+
+# Nerd Fonts version: {{ .nerdFonts.version }}
+
+fc-cache -f
+{{ end -}}

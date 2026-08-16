@@ -1,0 +1,19 @@
+packages:
+  apt:
+    - curl
+    - git
+    - gh
+    - jq
+    - zip
+    - xclip
+    - gnupg
+    - build-essential
+    - clang
+    - llvm
+    - lld
+    - lldb
+    - clang-format
+    - wezterm
+    - zsh
+  cargo:
+    - zellij

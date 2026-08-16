@@ -1,0 +1,7 @@
+{{ range .nerdFonts.fonts }}
+["nerd-font-{{ . }}"]
+type = "archive"
+url = "https://github.com/ryanoasis/nerd-fonts/releases/download/v{{ $.nerdFonts.version }}/{{ . }}.zip"
+include = ["*.ttf", "*.otf"]
+targetPath = ".local/share/fonts"
+{{ end }}

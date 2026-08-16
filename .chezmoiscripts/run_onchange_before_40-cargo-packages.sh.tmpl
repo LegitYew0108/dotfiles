@@ -1,0 +1,17 @@
+{{ if eq .chezmoi.os "linux" -}}
+#!/bin/bash
+
+set -euo pipefail
+
+source "$HOME/.cargo/env"
+
+packages=(
+{{- range .packages.cargo }}
+    {{ . | quote }}
+{{- end }}
+)
+
+if ((${#packages[@]} > 0)); then
+    cargo install --locked "${packages[@]}"
+fi
+{{ end -}}

@@ -1,0 +1,13 @@
+{{- if eq .chezmoi.os "linux" }}
+#!/bin/bash
+set -euo pipefail
+
+packages=(
+{{- range .packages.apt }}
+  {{ . | quote }}
+{{- end }}
+)
+
+sudo apt-get update
+sudo apt-get install -y "${packages[@]}"
+{{- end }}
