@@ -6,13 +6,12 @@ set -euo pipefail
 {{ if eq .chezmoi.osRelease.id "ubuntu" -}}
 
 codename="{{ .chezmoi.osRelease.versionCodename }}"
-llvm_version="{{ .llvm.version }}"
 
 sudo install -d -m 0755 /etc/apt/keyrings
 
 # LLVM
 repo_url="http://apt.llvm.org/${codename}/"
-suite="llvm-toolchain-${codename}-${llvm_version}"
+suite="llvm-toolchain-${codename}
 
 curl -fsSL https://apt.llvm.org/llvm-snapshot.gpg.key \
     | sudo gpg --yes --dearmor -o /etc/apt/keyrings/llvm.gpg
