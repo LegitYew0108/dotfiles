@@ -1,0 +1,28 @@
+{{- if eq .chezmoi.os "linux" -}}
+#!/usr/bin/env bash
+set -euo pipefail
+
+packages=(
+{{- range .packages.snap }}
+  {{ . | quote }}
+{{- end }}
+)
+
+if [ "${#packages[@]}" -eq 0 ]; then
+  exit 0
+fi
+
+if ! command -v snap >/dev/null 2>&1 || ! snap list >/dev/null 2>&1; then
+  echo "[chezmoi] snap/snapd is not available in this environment; skipping snap packages: ${packages[*]}"
+  exit 0
+fi
+
+for pkg in "${packages[@]}"; do
+  if snap list "$pkg" >/dev/null 2>&1; then
+    continue
+  fi
+  if ! sudo snap install "$pkg"; then
+    echo "[chezmoi] WARNING: failed to install snap package: $pkg" >&2
+  fi
+done
+{{- end }}

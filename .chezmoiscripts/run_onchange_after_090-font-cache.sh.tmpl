@@ -1,0 +1,12 @@
+{{- if eq .chezmoi.os "linux" -}}
+#!/usr/bin/env bash
+set -euo pipefail
+
+# Nerd Fonts version: {{ .nerdFonts.version }}
+
+if command -v fc-cache >/dev/null 2>&1; then
+  fc-cache -f
+else
+  echo "[chezmoi] fc-cache not found; skipping font cache refresh"
+fi
+{{- end }}

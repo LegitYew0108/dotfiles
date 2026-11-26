@@ -1,8 +1,22 @@
-{{ if eq .chezmoi.os "linux" -}}
-#!/bin/bash
-
+{{- if eq .chezmoi.os "linux" -}}
+#!/usr/bin/env bash
 set -euo pipefail
 
-chsh -s /bin/zsh
+zsh_path="$(command -v zsh || true)"
+if [ -z "$zsh_path" ]; then
+  echo "[chezmoi] zsh not found; skipping chsh"
+  exit 0
+fi
 
-{{ end -}}
+current_shell="$(getent passwd "$USER" | cut -d: -f7 || true)"
+if [ "$current_shell" = "$zsh_path" ]; then
+  exit 0
+fi
+
+# Use sudo chsh to reuse sudo credentials instead of prompting separately via PAM
+if sudo chsh -s "$zsh_path" "$USER"; then
+  echo "[chezmoi] Changed login shell for $USER to $zsh_path"
+else
+  echo "[chezmoi] WARNING: could not change login shell automatically. Run: chsh -s $zsh_path" >&2
+fi
+{{- end }}

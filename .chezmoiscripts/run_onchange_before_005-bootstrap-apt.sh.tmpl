@@ -1,0 +1,9 @@
+{{- if eq .chezmoi.os "linux" -}}
+#!/usr/bin/env bash
+set -euo pipefail
+
+if ! command -v curl >/dev/null 2>&1 || ! command -v gpg >/dev/null 2>&1; then
+  sudo apt-get update
+  sudo apt-get install -y curl gnupg ca-certificates
+fi
+{{- end }}
