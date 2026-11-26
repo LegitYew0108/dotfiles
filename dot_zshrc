@@ -161,7 +161,7 @@ export PATH="$PATH:$HOME/.rustowl/"
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 # pnpm
-export PNPM_HOME="/home/legit/.local/share/pnpm"
+export PNPM_HOME="$HOME/.local/share/pnpm"
 case ":$PATH:" in
   *":$PNPM_HOME/bin:"*) ;;
   *) export PATH="$PNPM_HOME/bin:$PATH" ;;
@@ -169,9 +169,9 @@ esac
 # pnpm end
 
 # mujoco
-export PATH="$PATH:/home/legit/.local/share/mujoco/bin"
+export PATH="$PATH:$HOME/.local/share/mujoco/bin"
 alias get_idf='. $HOME/esp/esp-idf/export.sh'
 
 
 # Added by Antigravity CLI installer
-export PATH="/home/legit/.local/bin:$PATH"
+export PATH="$HOME/.local/bin:$PATH"
