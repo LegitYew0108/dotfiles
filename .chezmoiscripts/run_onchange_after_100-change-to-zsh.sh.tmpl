@@ -9,7 +9,7 @@ if [ -z "$zsh_path" ]; then
 fi
 
 current_shell="$(getent passwd "$USER" | cut -d: -f7 || true)"
-if [ "$current_shell" = "$zsh_path" ]; then
+if [ -n "$current_shell" ] && [ "$(realpath -m "$current_shell")" = "$(realpath -m "$zsh_path")" ]; then
   exit 0
 fi
 
