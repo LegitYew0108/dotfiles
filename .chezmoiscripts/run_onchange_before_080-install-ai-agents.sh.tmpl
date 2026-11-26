@@ -1,0 +1,36 @@
+{{- if eq .chezmoi.os "linux" -}}
+#!/usr/bin/env bash
+set -euo pipefail
+
+export PATH="$HOME/.local/bin:$HOME/bin:$PATH"
+
+failed=()
+
+install_agent() {
+  local name="$1"
+  local cmd="$2"
+  local url="$3"
+  local shell_bin="$4"
+
+  if command -v "$cmd" >/dev/null 2>&1; then
+    return 0
+  fi
+
+  echo "[chezmoi] Installing ${name}..."
+  if ! curl -fsSL "$url" | "$shell_bin"; then
+    echo "[chezmoi] ERROR: Failed to install ${name} (${url})" >&2
+    failed+=("$name")
+  fi
+}
+
+install_agent "Claude Code" "claude" "https://claude.ai/install.sh" "bash"
+install_agent "Codex"       "codex"  "https://chatgpt.com/codex/install.sh" "sh"
+install_agent "Antigravity" "agy"    "https://antigravity.google/cli/install.sh" "bash"
+install_agent "OMP"         "omp"    "https://omp.sh/install" "sh"
+install_agent "T3 Code"     "t3"     "https://t3.codes/install.sh" "sh"
+
+if [ "${#failed[@]}" -gt 0 ]; then
+  echo "[chezmoi] Failed to install AI agents: ${failed[*]}" >&2
+  exit 1
+fi
+{{- end }}

@@ -1,0 +1,25 @@
+{{- if eq .chezmoi.os "linux" -}}
+#!/usr/bin/env bash
+set -euo pipefail
+
+{{- if eq .chezmoi.arch "arm64" }}
+NVIM_ARCH="arm64"
+{{- else }}
+NVIM_ARCH="x86_64"
+{{- end }}
+
+INSTALL_DIR="/opt/nvim-linux-${NVIM_ARCH}"
+
+if [ -x "${INSTALL_DIR}/bin/nvim" ] || command -v nvim >/dev/null 2>&1; then
+  exit 0
+fi
+
+tmp_tar="$(mktemp --suffix=.tar.gz)"
+trap 'rm -f "$tmp_tar"' EXIT
+
+curl -fsSL "https://github.com/neovim/neovim/releases/latest/download/nvim-linux-${NVIM_ARCH}.tar.gz" -o "$tmp_tar"
+sudo rm -rf "$INSTALL_DIR"
+sudo tar -C /opt -xzf "$tmp_tar"
+sudo ln -sfn "${INSTALL_DIR}/bin/nvim" /usr/local/bin/nvim
+echo "[chezmoi] Installed Neovim to ${INSTALL_DIR}"
+{{- end }}
