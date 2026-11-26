@@ -17,7 +17,7 @@ layout{
 			pane size="50%"{
 			}
 			pane {
-				command "claude"
+				command "codex"
 			}
 		}
 		pane size=2 borderless=true{

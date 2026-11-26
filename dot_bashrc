@@ -148,3 +148,7 @@ eval "$(pyenv init --path)"
 
 # Created by `pipx` on 2025-06-30 04:18:32
 export PATH="$PATH:/home/legit/.local/bin"
+
+
+# Added by Antigravity CLI installer
+export PATH="/home/legit/.local/bin:$PATH"

@@ -126,32 +126,18 @@ export PATH="$PATH:/opt/blender/"
 # Created by `pipx` on 2025-06-30 04:17:47
 export PATH="$PATH:$HOME/.local/bin"
 
-# pnpm
-export PNPM_HOME="/home/legit/.local/share/pnpm"
-case ":$PATH:" in
-  *":$PNPM_HOME:"*) ;;
-  *) export PATH="$PNPM_HOME:$PATH" ;;
-esac
-# pnpm end
-#
 export PATH="$PATH:$HOME/apps/"
-
 . "$HOME/.cargo/env"
-
-# GZ sim version
-export GZ_VERSION=fortless
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 # Setting up Zellij config file
-export ZELLIJ_CONFIG_DIR="$HOME/dotfiles/zellij"
+export ZELLIJ_CONFIG_DIR="$HOME/.config/zellij"
 
-source /opt/ros/humble/setup.zsh
-export RMW_IMPLEMENTATION=rmw_zenoh_cpp
 export XDG_CONFIG_HOME="$HOME/.config"
-export WEZTERM_CONFIG_HOME="$HOME/dotfiles/wezterm"
+export WEZTERM_CONFIG_HOME="$HOME/.config/wezterm"
 
 export GTK_IM_MODULE=fcitx
 export QT_IM_MODULE=fcitx
@@ -160,21 +146,32 @@ export XMODIFIERS=@im=fcitx
 export PATH="/usr/local/cuda/bin:$PATH"
 export LD_LIBRARY_PATH="/usr/local/cuda/lib64:$LD_LIBRARY_PATH"
 
-export PYENV_ROOT="$HOME/.pyenv"
-export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init --path)"
-
 fpath+=~/.zfunc; autoload -Uz compinit; compinit
 export ZENOH_ROUTER_CONFIG_URI="$HOME/zenoh/MY_ZENOH_ROUTER_CONFIG.json5"
 
-source "$HOME/dotfiles/local_settings.zsh"
-
-# opencode
-export PATH=/home/legit/.opencode/bin:$PATH
-
-# Added by LM Studio CLI (lms)
-export PATH="$PATH:/home/legit/.lmstudio/bin"
-# End of LM Studio CLI section
+source "$HOME/local_settings.zsh"
 
 export PATH="$PATH:/usr/local/bin/zen/"
 export PATH="$PATH:$HOME/.local/bin/"
+
+# for rustowl
+export PATH="$PATH:$HOME/.rustowl/"
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+# pnpm
+export PNPM_HOME="/home/legit/.local/share/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME/bin:"*) ;;
+  *) export PATH="$PNPM_HOME/bin:$PATH" ;;
+esac
+# pnpm end
+
+# mujoco
+export PATH="$PATH:/home/legit/.local/share/mujoco/bin"
+alias get_idf='. $HOME/esp/esp-idf/export.sh'
+
+
+# Added by Antigravity CLI installer
+export PATH="/home/legit/.local/bin:$PATH"

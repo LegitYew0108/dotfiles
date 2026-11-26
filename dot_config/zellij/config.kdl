@@ -288,11 +288,6 @@ default_shell "zsh"
 // Choose the path to override cwd that zellij will use for opening new panes
 // 
 // default_cwd "/tmp"
- 
-// The folder in which Zellij will look for layouts
-// (Requires restart)
-// 
-layout_dir "/home/legit/dotfiles/zellij/layouts"
 
 // The name of the default layout to load on startup
 // Default: "default"

@@ -48,7 +48,7 @@ layout{
 			plugin location="zellij:compact-bar"
 		}
 		pane{
-			command "claude"
+			command "omp"
 		}
 		pane size=2 borderless=true{
 			plugin location="zellij:status-bar"

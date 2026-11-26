@@ -2,7 +2,7 @@ return {
 		{
 			'cordx56/rustowl',
 			version = '*', -- Latest stable version
-			build = 'cargo binstall rustowl',
+			build = 'cargo install rustowl',
 			lazy = false, -- This plugin is already lazy
 			opts = {},
 		},
@@ -45,21 +45,21 @@ return {
     -- null-ls の設定 (フォーマッティングやLinting用)
     {
 			"nvimtools/none-ls.nvim",
+			dependencies={
+				"nvim-lua/plenary.nvim",
+				"nvimtools/none-ls-extras.nvim",
+			},
 			config = function()
 				local format_group = vim.api.nvim_create_augroup('FormatOnSave', { clear = true })
 				local null_ls = require("null-ls")
 				null_ls.setup({
 					sources = {
-							-- 1. Formatter: Prettier
-							-- prettierd を使うと、デーモンとして常駐するため動作が爆速になります
+							-- 1. Formatter: Prettierd
 							null_ls.builtins.formatting.prettierd,
-
-							-- 2. Linter: ESLint
-							-- eslint_d も同様に高速版。診断（エラー表示）用
-							null_ls.builtins.diagnostics.eslint_d,
-							-- 3. Code Action: ESLint
-							-- クイックフィックス（自動修正）を可能にする
-							null_ls.builtins.code_actions.eslint_d,
+							-- 2. Linter: ESLint_d
+							require("none-ls.diagnostics.eslint_d"),
+							-- 3. Code Action: ESLint_d
+							require("none-ls.code_actions.eslint_d"),
 					},
 						-- 保存時に自動整形を走らせる設定
 					on_attach = function(client, bufnr)
