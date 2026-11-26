@@ -1,0 +1,6 @@
+{{- $installRos2 := promptBoolOnce . "install.ros2" "Install ROS 2 Desktop (22.04: humble / 24.04: kilted / 26.04: lyrical)" false -}}
+
+sourceDir = {{ .chezmoi.sourceDir | quote }}
+
+[data.install]
+  ros2 = {{ $installRos2 }}

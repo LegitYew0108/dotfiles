@@ -1,0 +1,60 @@
+{{- $installRos2 := false -}}
+{{- if hasKey . "install" -}}
+  {{- $installRos2 = (get .install "ros2" | default false) -}}
+{{- end -}}
+{{- if and (eq .chezmoi.os "linux") (eq .chezmoi.osRelease.id "ubuntu") $installRos2 -}}
+#!/usr/bin/env bash
+set -euo pipefail
+
+ubuntu_version="{{ .chezmoi.osRelease.versionID }}"
+codename="{{ .chezmoi.osRelease.versionCodename }}"
+
+case "${ubuntu_version}:${codename}" in
+  22.04:*|*:jammy)
+    ros_distro="humble"
+    ;;
+  24.04:*|*:noble)
+    ros_distro="kilted"
+    ;;
+  26.04:*|*:resolute)
+    ros_distro="lyrical"
+    ;;
+  *)
+    echo "[chezmoi] Unsupported Ubuntu version (${ubuntu_version} / ${codename}) for ROS 2 Desktop (supported: 22.04->humble, 24.04->kilted, 26.04->lyrical); skipping"
+    exit 0
+    ;;
+esac
+
+pkg="ros-${ros_distro}-desktop"
+if dpkg -s "$pkg" >/dev/null 2>&1; then
+  exit 0
+fi
+
+# Ensure UTF-8 locale
+if ! locale 2>/dev/null | grep -qi "UTF-8"; then
+  sudo apt-get update
+  sudo apt-get install -y locales
+  sudo locale-gen en_US en_US.UTF-8
+  sudo update-locale LC_ALL=en_US.UTF-8 LANG=en_US.UTF-8
+fi
+
+# Ensure universe repository is enabled
+if ! command -v add-apt-repository >/dev/null 2>&1; then
+  sudo apt-get update
+  sudo apt-get install -y software-properties-common
+fi
+sudo add-apt-repository -y universe
+
+# Install official ros2-apt-source package if not already installed
+if ! dpkg -s ros2-apt-source >/dev/null 2>&1; then
+  ros_apt_version="$(curl -fsSL -o /dev/null -w '%{url_effective}' https://github.com/ros-infrastructure/ros-apt-source/releases/latest | awk -F/ '{print $NF}')"
+  tmp_deb="$(mktemp --suffix=.deb)"
+  trap 'rm -f "$tmp_deb"' EXIT
+  curl -fsSL -o "$tmp_deb" "https://github.com/ros-infrastructure/ros-apt-source/releases/download/${ros_apt_version}/ros2-apt-source_${ros_apt_version}.${codename}_all.deb"
+  sudo dpkg -i "$tmp_deb"
+fi
+
+echo "[chezmoi] Installing ROS 2 Desktop (${pkg})..."
+sudo apt-get update
+sudo apt-get install -y "$pkg" ros-dev-tools
+{{- end }}
